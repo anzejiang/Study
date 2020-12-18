@@ -213,10 +213,9 @@ func main() {
 引用传递：直接引用源参数，在原有参数上进行改动
 
 GO语言参数传递只有一种方式：值传递
-
-var arr1 [5]int  // 使用var关键字定义的数组为五个空数组
-//arr2 := [3]int{1, 2, 3}	// 使用:=定义的数组需要赋予初值
-arr3 := [...]int{5, 6, 7, 8, 9} // 不确定有数组的位数用[...]代表
+// 使用指针修改源参数
+var arr1 [5]int 
+arr3 := [...]int{5, 6, 7, 8, 9} 
 
 func platArry(arr *[5]int) {
 	arr[0] = 100
@@ -239,10 +238,10 @@ func main() {
 
 ```
 数组定义方式：
-	//var arr1 [5]int  // 使用var关键字定义的数组为五个空数组
-	//arr2 := [3]int{1, 2, 3}	// 使用:=定义的数组需要赋予初值
-	arr3 := [...]int{4, 5, 6, 7, 8, 9} // 不确定有数组的位数用[...]代表
-	//var grid [4][5]int	// 四行五列，四个数组，每个数组有5个值
+	//var arr1 [5]int  
+	//arr2 := [3]int{1, 2, 3}	
+	arr3 := [...]int{4, 5, 6, 7, 8, 9} 
+	//var grid [4][5]int	
 	//fmt.Println(arr1, arr2, arr3, grid)
 	//for i:= 0; i < len(arr3); i++{
 	//	fmt.Println(arr3[i])
@@ -257,13 +256,41 @@ arr3 := [...]int{4, 5, 6, 7, 8, 9} // 不确定有数组的位数用[...]代表
 for i, v := range arr3{
 		fmt.Println(i, v)
 	}
-	
-
 ```
 
+## 切片
 
+```
+Slice(切片)
+// []int代表slice， [5]int代表数组
+func updateslice(s []int) {
+	s[0] = 100
+}
 
+func main() {
+	arr := [...]int{0,1,2,3,4,5,6,7}
+	s1 := arr[:]
+	s2 := arr[:]
+	fmt.Println(s1)
+	fmt.Println(s2)
+	
+	updateslice(s1)
+	fmt.Println(s1)
+	fmt.Println(s2)
+	fmt.Println(arr)
+}
+------------------------
+[0 1 2 3 4 5 6 7]
+[0 1 2 3 4 5 6 7]
+[100 1 2 3 4 5 6 7]
+[100 1 2 3 4 5 6 7]
+[100 1 2 3 4 5 6 7]
 
+使用slice（切片）
+更改源数据：
+s1、s2均指向arr，修改s1的时候arr的值发生变更，同时指向arr的s2也会因为s1的修改发生改变。
+
+```
 
 
 
