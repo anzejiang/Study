@@ -292,7 +292,88 @@ s1、s2均指向arr，修改s1的时候arr的值发生变更，同时指向arr�
 
 ```
 
+## 字符串操作
 
+```
+// 找出不重复最长的字符串，
+package main
+
+import "fmt"
+
+func lengthOFNonRepeatingSubStr(s string) int  {
+	lastOccurred := make(map[rune]int)
+	start := 0
+	maxLength := 0
+
+	for i, ch := range []rune(s) {
+		if lastI, ok := lastOccurred[ch]; ok && lastI >= start{
+			start = lastI +1
+		}
+		if i - start + 1 > maxLength{
+			maxLength = i - start + 1
+		}
+		lastOccurred[ch] = i
+	}
+	fmt.Println()
+	return  maxLength
+}
+
+func main() {
+	fmt.Print(lengthOFNonRepeatingSubStr("asdfasdfasdfasdfasdf"))
+	fmt.Print(lengthOFNonRepeatingSubStr("abcdef"))
+	fmt.Print(lengthOFNonRepeatingSubStr("aa"))
+	fmt.Print(lengthOFNonRepeatingSubStr("abca"))
+	fmt.Print(lengthOFNonRepeatingSubStr("我爱慕课网"))
+	fmt.Print(lengthOFNonRepeatingSubStr("一二三二一"))
+
+}
+
+// 字符串操作
+// 英文一字节，中文三字节
+package main
+
+import (
+	"fmt"
+	"unicode/utf8"
+)
+// 使用range便利pos， rune
+// 使用rtf8.RuneCountInString获得字符数量
+// 使用len获得字节长度
+// 使用[]byte获得字节
+
+func main() {
+	s := "Yes我爱慕课网!"
+	fmt.Println(s)
+	
+	for _, b := range []byte(s){	// 获取s字符串的字节，进行遍历输出
+		fmt.Printf("%X ", b) // utf-8编码
+	}
+	
+	fmt.Println()
+	
+	for i, ch := range s{	// ch is a rune
+		fmt.Printf("(%d %X) ", i, ch) // unicode编码
+	}
+	
+	fmt.Println()
+	// utf8.RuneCountInString获取字符串的长度，长度为：9
+	fmt.Println("rune count:", utf8.RuneCountInString(s))
+	
+	byths := []byte(s)	// 获取s的字节
+	for len(byths) > 0{
+		ch, size  := utf8.DecodeRune(byths)
+		byths = byths[size:]
+		fmt.Printf("%c ", ch)
+	}
+	fmt.Println()
+
+	for i, ch := range []rune(s){
+		fmt.Printf("(%d %c) ", i, ch)
+	}
+}
+
+
+```
 
 
 

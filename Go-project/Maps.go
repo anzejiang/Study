@@ -1,12 +1,22 @@
 package main
 
+import "fmt"
+
 func main() {
-	// 定义map
-	//m := map[string]string{
-	//	"name": "azj",
-	//	"age": "18",
-	//	"address": "shanxi",
-	//}
+	//定义map
+	m := map[string]string{
+		"name": "azj",
+		"age": "18",
+		"address": "shanxi",
+	}
+
+	var s []string
+	for k, v := range m{
+		s := append(s, ...)
+	}
+
+	fmt.Println(s)
+
 	//m2 := make(map[string]int) // m2 == empty map
 	//var m3 map[string]int	// m3 == nil
 	//fmt.Println(m, m2, m3)
