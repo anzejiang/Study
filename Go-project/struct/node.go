@@ -1,22 +1,37 @@
-package main
+package tree
 
-type treeNode struct {
-	value int
-	left, right *treeNode
+import "fmt"
+
+type Node struct {
+	Value int
+	Left, Right *Node
 }
 
-func createNode(value int) *treeNode {
-	return &treeNode{value: value}
-
+// 值接收者，不会改变结构体中的元数据
+func (node Node) Print()  {
 }
 
-func main() {
-	var root treeNode
-	root = treeNode{value: 3}
-	root.left = &treeNode{}
-	root.right = &treeNode{5, nil, nil}
-	//fmt.Println(root.right.left, root.right.right, root.right.value, root.value)
-	root.right.left = new(treeNode)
-	root.left.right = createNode(2)
-
+// 指针接收者，会改变源结构体中的数据
+func (node *Node) SetValue(value int)  {
+	if node == nil{
+		fmt.Println("Setting value to nil " +
+			"node. Ignored.")
+		return
+	}
+	node.Value = value
 }
+
+func (node *Node) traverse()  {
+	if node == nil {
+		return
+	}
+	node.Left.traverse()
+	node.Print()
+	node.Right.traverse()
+}
+
+func CreateNode(value int) *Node {
+	return &Node{Value: value}
+}
+
+
