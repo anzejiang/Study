@@ -260,7 +260,7 @@ for i, v := range arr3{
 	}
 ```
 
-## 切片
+## 切片Slice
 
 ```
 Slice(切片)
@@ -393,7 +393,7 @@ func main() {
 2、使用组合
 ```
 
-## 接口
+## 接口interface
 
 ```
 duck typing
@@ -402,6 +402,65 @@ duck typing
 
 接口的定义：
 1、接口由使用者定义
+
+interface是一个接口，具体功能、方法的实现由struct、方法进行实现
+interface中包含了N个方法，interface中的方法
+
+接口分为两部分：
+	一、定义：定义接口interface，及在接口interface中定义方法
+	二、实现：由strukt、函数具体实现
+	例：
+		定义：
+		// 定义接口，及方法
+		package main
+		
+		type Retriever interface {
+			Get(url string) string
+		}
+		// 使用接口
+		func download(r Retriever) string  {
+			return r.Get("http://www.imooc.com")
+		}
+		// 调用接口
+		func main() {
+            var r Retriever		// 定义r 为接口
+            r = mock.Retriever{"The is a fake Content"} // 相当于实例化接口
+            fmt.Printf("%T %v\n", r, r)
+
+            r = &real.Retriever{
+                UserAgent: "Mozilla/5.0",
+                TimeOut: time.Minute,
+            }
+            fmt.Printf("%T %v\n", r, r)
+            //fmt.Println(download(r))
+        }
+		
+		实现：
+		//  实现接口
+		package real
+		
+		type Retriever struct {
+            UserAgent string
+            TimeOut time.Duration
+         }
+		// 实现方法
+		func (r *Retriever) Get(url string) string {
+            resp, err := http.Get(url)
+            if err != nil{
+                panic(err)
+            }
+            result , err := httputil.DumpResponse(resp, true)
+            resp.Body.Close()
+            if err != nil {
+                panic(err)
+            }
+            return string(result)
+        }
+		
+	接口组合：
+		
+		
+		
 ```
 
 
