@@ -43,5 +43,6 @@ func main() {
 	}else {
 		fmt.Println("not a mock retriever")
 	}
+
 }
 
