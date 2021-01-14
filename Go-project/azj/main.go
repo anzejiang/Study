@@ -1,19 +1,29 @@
 package main
 
 import (
+	"bufio"
 	"fmt"
-	"go-Study/Go-project/azj/test"
+	"go-Study/Go-project/azj/fib"
+	"os"
 )
 
-type Azj interface {
-	Search(a string) string
+func writeFile(filename string) {
+	file, err := os.Create(filename)
+	if err != nil{
+		panic(err)
+	}
+	defer file.Close()
+
+	write := bufio.NewWriter(file)
+	defer write.Flush()
+
+	f := fib.Fibonacci()
+	for i := 0;i < 20; i++{
+	fmt.Fprintln(write, f())
+	//fmt.Println(f())
+	}
 }
 
-
-
 func main() {
-	aa := test.Azj{"azj", 18}
-	//fmt.Println(aa)
-	//fmt.Println(aa.Username)
-	fmt.Println(aa.Search("ZZZZZ"))
+	writeFile("fib.txt")
 }

@@ -1,24 +1,27 @@
 package main
 
-import "fmt"
+import (
+	"bufio"
+	"os"
+)
 
-func fibonacci() func() int {
-	a, b := 0, 1
-	return func() int {
-		a, b = b, a + b
-		return a
+func writeFile(filename string) {
+	file, err := os.Create(filename)
+	if err != nil {
+		panic(err)
 	}
+	defer file.Close()
+
+	// 使用bufio写文件更快，先读到内存，使用flush刷新写到文件
+	write := bufio.NewWriter(file)
+	defer write.Flush()
+
+
+
 }
 
-func main() {
-	f := fibonacci()
-	fmt.Printf("%d\n", f())
 
-	//arr := [...]int{0,1,2,3,4,5,6,7}
-	//s2 := arr[:]
-	////tail := s2[len(s2)-1]
-	//s2 = s2[:len(s2)-1]
-	////fmt.Println(tail, s2)
-	//fmt.Println(s2)
+
+func main() {
 
 }

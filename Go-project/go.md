@@ -489,3 +489,31 @@ func main() {
 }
 ```
 
+## 错误处理和资源管理
+
+```
+资源管理：当程序打开数据库在读取数据的过程中，程序错误退出，及时关闭数据库连接
+defer（资源管理）
+	在函数执行完后，执行生效，多个defer从下往上执行，倒序执行
+    func writeFile(filename string) {
+        file, err := os.Create(filename)
+        if err != nil{
+            panic(err)
+        }
+        defer file.Close()
+
+		// bufio，先写道内存中，使用flush刷新到文件内，比直接写文件效率高
+        write := bufio.NewWriter(file)
+        defer write.Flush()
+
+        f := fib.Fibonacci()
+        for i := 0;i < 20; i++{
+        fmt.Fprintln(write, f())
+        //fmt.Println(f())
+        }
+    }
+    func main() {
+        writeFile("fib.txt")
+
+```
+
