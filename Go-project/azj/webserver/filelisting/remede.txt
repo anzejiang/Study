@@ -1,0 +1,6 @@
+说明：
+write.go\filelisting(handler.go)
+
+通过浏览器查看一个文件
+端口:8888
+localhost:8888/list/filename

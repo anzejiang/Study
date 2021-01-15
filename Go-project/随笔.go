@@ -15,12 +15,7 @@ func writeFile(filename string) {
 	// 使用bufio写文件更快，先读到内存，使用flush刷新写到文件
 	write := bufio.NewWriter(file)
 	defer write.Flush()
-
-
-
 }
-
-
 
 func main() {
 

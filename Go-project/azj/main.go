@@ -7,6 +7,8 @@ import (
 	"os"
 )
 
+
+// defer资源管理
 func writeFile(filename string) {
 	file, err := os.Create(filename)
 	if err != nil{

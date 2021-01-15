@@ -493,6 +493,8 @@ func main() {
 
 ```
 资源管理：当程序打开数据库在读取数据的过程中，程序错误退出，及时关闭数据库连接
+使用场景：打开文件/关闭、连接数据库/断开，等等
+
 defer（资源管理）
 	在函数执行完后，执行生效，多个defer从下往上执行，倒序执行
     func writeFile(filename string) {
@@ -509,7 +511,6 @@ defer（资源管理）
         f := fib.Fibonacci()
         for i := 0;i < 20; i++{
         fmt.Fprintln(write, f())
-        //fmt.Println(f())
         }
     }
     func main() {
