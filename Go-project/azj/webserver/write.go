@@ -26,7 +26,7 @@ func errWrapper(handler appHandler) func(http.ResponseWriter, *http.Request)  {
 		case os.IsNotExist(err):
 			code = http.StatusNotFound
 		// 权限不足的情况
-		case os.IsPermission(err): 
+		case os.IsPermission(err):
 			code = http.StatusForbidden
 		// 未知错误
 		default:

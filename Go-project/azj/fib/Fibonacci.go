@@ -6,5 +6,4 @@ func Fibonacci() func() int {
 		a, b = b, a + b
 		return a
 	}
-
 }
