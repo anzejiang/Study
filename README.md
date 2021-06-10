@@ -1,4 +1,4 @@
-# Go-Study
+# Study
 - 👋 Hi, I’m @anzejiang
 - 👀 I’m interested in language English and  technology.
 - 🌱 I’m currently learning kubernetes.
