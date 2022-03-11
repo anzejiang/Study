@@ -1,4 +1,5 @@
 # Study
+格 致 诚 修 齐 治 平
 - 👋 Hi, I’m @anzejiang
 - 👀 I’m interested in language English and  technology.
 - 🌱 I’m currently learning kubernetes.
